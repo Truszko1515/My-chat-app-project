@@ -32,7 +32,8 @@ namespace MainProjekt
             services.AddIdentity<ApplicationUser, IdentityRole>(config =>
             {
                 config.SignIn.RequireConfirmedEmail = true;
-            }).AddEntityFrameworkStores<ApplicationDbContex>();
+            }).AddEntityFrameworkStores<ApplicationDbContex>()
+            .AddDefaultTokenProviders();
 
             services.AddTransient<IMessagesRepository, MessagesRepository>();
             
@@ -66,6 +67,9 @@ namespace MainProjekt
             }
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthentication();
 
             app.UseAuthentication();
             app.UseAuthorization();
